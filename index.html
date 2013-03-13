@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>ScrollIt</title>
+	<style type="text/css">
+		body{
+			position: relative;
+		}
+		#container > div{
+			height: 100%;
+			bottom: 1px;
+		}
+		#menu{
+			position: fixed;
+			top: 0px;
+		}
+		#container{
+			height: 500px;
+			overflow: scroll;
+		}
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<a href="#hello1" data-scrollIt="true">hello</a>
+		<a href="#hello2" data-scrollIt="true">hello</a>
+		<a href="#hello3" data-scrollIt="true">hello</a>
+		<a href="#hello4" data-scrollIt="true">hello</a>
+		<a href="#hello5" data-scrollIt="true">hello</a>
+		<a href="#hello6" data-scrollIt="true">hello</a>
+		<a href="#hello7" data-scrollIt="true">hello</a>
+		<a href="#hello8" data-scrollIt="true">hello</a>
+	</div>
+	<div id="container">
+		<div id="hello1">
+			<p>1</p>
+		</div>
+		<div id="hello2">
+			<p>2</p>
+		</div>
+		<div id="hello3">
+			<p>3</p>
+		</div>
+		<div id="hello4">
+			<p>4</p>
+		</div>
+		<div id="hello5">
+			<p>5</p>
+		</div>
+		<div id="hello6">
+			<p>6</p>
+		</div>
+		<div id="hello7">
+			<p>7</p>
+		</div>
+		<div id="hello8">
+			<p>8</p>
+		</div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="scrollit.js"></script>
+	<script>
+		$(function(){
+			$('#container').scrollIt();
+		});
+	</script>
+</body>
+</html>
