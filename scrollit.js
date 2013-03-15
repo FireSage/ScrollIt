@@ -52,25 +52,37 @@
 
 		evaluate: function(){
 			//cache this variable to encsure accessibility 
-			var temp;
+			var temp, temp2;
 
 			//set direction and distance to defaults
 			//temp = this.$elem.prop('scrollTop') + Math.abs(this.target.top);
 			temp = Math.abs(this.target.top);
+			temp2 = Math.abs(this.target.left);
 			//console.log('temp = '+ this.$elem.prop('scrollTop') + '+ '+ Math.abs(this.target.top)+' =' + temp);
-			this.direction = 'up';
+			this.directionY = 'up';
+			this.directionX = 'forward';
 
 			//check if direction and distance need to be adjusted
 			if(this.target.top < 0){
-				//if direction and distance need to be adjusted 
+				//if directionY and distanceY need to be adjusted 
 				//direction is opposite and diatance is equal to top offset
 				//temp = Math.abs(this.target.top);
-				this.direction = 'down';
+				this.directionY = 'down';
+			}
+
+			//check if directionX and distanceX need to be adjusted
+			if(this.target.left < 0){
+				//if directionX and distance need to be adjusted 
+				//direction is opposite and diatance is equal to top offset
+				//temp = Math.abs(this.target.top);
+				this.directionX = 'back';
 			}
 			this.distanceY = Math.abs(temp);
+			this.distanceX = Math.abs(temp2);
 			//set step diatance using 60 fps
 			//this.step = Math.abs(temp /($.fn.scrollIt.options.duration/(1000/60)));
-			this.step = this.distanceY /($.fn.scrollIt.options.duration/16);
+			this.stepY = this.distanceY /($.fn.scrollIt.options.duration/16);
+			this.stepX = this.distanceX /($.fn.scrollIt.options.duration/16);
 
 			console.log(this);
 			if(this.distanceY != 0){
@@ -85,17 +97,17 @@
 			//get current position
 			pos = self.$elem.prop('scrollTop');
 			if( self.distanceY > 0){
-				switch(this.direction){
+				switch(this.directionY){
 					case 'down':
-						pos = pos - this.step;
+						pos = pos - this.stepY;
 						break;
 					case 'up':
-						pos = pos + this.step;
+						pos = pos + this.stepY;
 						break;
 				}
 				
 				self.$elem.prop('scrollTop', pos);
-				this.distanceY = this.distanceY - this.step;
+				this.distanceY = this.distanceY - this.stepY;
 				setTimeout(function(){
 					self.scroll()
 				}, 1000/60);
